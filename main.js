@@ -87,7 +87,7 @@
    */
   function getTeamNames() {
     let url = API_URL + "?" + "team=help";
-    fetch(url)
+    fetch(url, { mode: "no-cors" })
       .then(checkStatus)
       .then(loadTeams)
       .catch(handleError);
@@ -136,7 +136,7 @@
    */
   function initialFetch() {
     let url = API_URL + "?" + "team=random";
-    fetch(url)
+    fetch(url, { mode: "no-cors" })
       .then(checkStatus)
       .then(JSON.parse)
       .then(loadMatch)
@@ -164,7 +164,7 @@
    */
   function fetchWithTeam(team) {
     let url = API_URL + "?team=" + team;
-    fetch(url)
+    fetch(url, { mode: "no-cors" })
       .then(checkStatus)
       .then(JSON.parse)
       .then(loadMatch)
@@ -179,7 +179,7 @@
     let url = API_URL + "?id=" + id;
     let data = new FormData();
     data.append("id", id);
-    fetch(url, { method: "POST", body: data })
+    fetch(url, { method: "POST", body: data, mode: "no-cors" })
       .then(checkStatus)
       .then(JSON.parse)
       .then(loadMatch)
