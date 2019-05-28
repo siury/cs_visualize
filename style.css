@@ -1,0 +1,270 @@
+/*
+  Ryan Siu
+  18 May 2019
+  CSE 154 AC
+
+  This file contains all the styling for the csgo visualizer, handling
+  hiding and revealing elements and animating loads and the sidebar
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  background-color: white;
+  display: grid;
+  grid-template-areas: ". header . ." ". match main ." ". . another .";
+  grid-template-rows: 1fr 6fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  overflow: hidden;
+}
+
+button {
+  height: 100%;
+  width: 100%;
+  font-family: inherit;
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  transition: 0.2s all;
+  background: none;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+
+header {
+  text-align: center;
+  grid-area: header;
+  font-size: 1.4vw;
+  color: #0c1821;
+}
+
+main {
+  grid-area: main;
+  max-height: 10%;
+  border-radius: 5px;
+  background-image: linear-gradient(-90deg, #1b2a41, #253958);
+  padding: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  display: grid;
+  grid-template-areas: ". content .";
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 5fr 1fr;
+  transition: all 1.2s;
+}
+
+h2 {
+  font-size: 2vw;
+}
+
+.teamChip {
+  display: inline-flex;
+  color: #1b2a41;
+  background-color: #ccc9dc;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 4px;
+  transition: all 0.1s;
+}
+
+.teamChip:hover {
+  cursor: pointer;
+  background-color: #324a5f;
+}
+
+.team {
+  grid-area: team;
+  color: white;
+}
+
+.stat {
+  grid-area: stat;
+  color: #ccc9dc;
+}
+
+.big {
+  max-height: 90%;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 1 !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.cache {
+  background-image: url("./img/cache.png");
+}
+
+.inferno {
+  background-image: url("./img/inferno.png");
+}
+
+.overpass {
+  background-image: url("./img/overpass.png");
+}
+
+.mirage {
+  background-image: url("./img/mirage.png");
+}
+
+.nuke {
+  background-image: url("./img/nuke.png");
+}
+
+.dust2 {
+  background-image: url("./img/dust2.png");
+}
+
+.train {
+  background-image: url("./img/train.png");
+}
+
+.vertigo {
+  background-image: url("./img/vertigo.png");
+}
+
+.winner {
+  color: rgb(25, 126, 25) !important;
+  font-style: italic;
+}
+
+.loser {
+  color: rgb(165, 40, 40) !important;
+}
+
+.alert {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  color: white;
+  font-size: 1rem;
+  opacity: 0;
+  transition: all 0.3s;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background-color: red;
+}
+
+#another {
+  grid-area: another;
+  padding: 10px;
+  height: 25%;
+  width: auto;
+  opacity: 0;
+  transition: 0.5s all;
+  border-radius: 5px;
+  margin-bottom: 0px;
+  background-image: linear-gradient(-90deg, #1b2a41, #253958);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#close {
+  position: absolute;
+  padding-left: 10px;
+  top: 0;
+  left: 0;
+}
+
+#close:hover {
+  cursor: pointer;
+}
+
+#search {
+  z-index: 2;
+  grid-area: content;
+}
+
+#map {
+  color: white;
+  border-radius: 2px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#match {
+  grid-area: match;
+  transition: all 1.2s;
+  opacity: 0;
+  padding-right: 20px;
+  text-align: center;
+  color: #324a5f;
+}
+
+#modal {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  width: 0;
+  top: 0;
+  left: 0;
+  color: white;
+  transition: all 0.5s;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background-image: linear-gradient(-90deg, #0c1821, #10202c);
+}
+
+#modal.open {
+  opacity: 1;
+  width: 25%;
+}
+
+#modal button {
+  width: 50%;
+}
+
+#modal input {
+  background-color: #183244;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  width: 45%;
+  padding-right: 2px;
+}
+
+#modal input::placeholder {
+  font-family: inherit;
+  color: white;
+  font-size: 1rem;
+}
+
+#inputs {
+  text-align: center;
+}
+
+#cite {
+  font-size: 10px;
+  color: #324a5f;
+  position: absolute;
+  bottom: 1px;
+}
+
+#results {
+  transition: 0.5s all;
+  opacity: 0;
+  grid-area: content;
+}
+
+#mvp .name,
+#mvp .score {
+  color: white;
+}

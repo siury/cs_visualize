@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+  *** 
+  Ryan Siu
+  17 May 2019
+  CSE 154 AC
+
+  This html contains the structure for a CSGO match viualizer, which displays information
+  about past csgo results and allows for user input for specific matches or teams
+  ***
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
+    <title>CSGO Match Visualizer</title>
+  </head>
+  <body>
+    <header id="header">
+      <h1>CSGO Match Visualizer</h1>
+    </header>
+    <section id="modal">
+      <h1>Search Settings<span id="close"> X</span></h1>
+      <section>
+        Some Teams to search for:
+        <div id="team-holder"></div>
+      </section>
+      <form id="team-form">
+        <p>Search for a Team!</p>
+        <input name="team" type="text" placeholder="Team Name" required />
+        <button id="submit-btn">
+          Search!
+        </button>
+      </form>
+      <form id="save-form">
+        <p>Save this Match!</p>
+        <input name="name" type="text" placeholder="Name this Match" required />
+        <button id="submit-btn">
+          Save!
+        </button>
+      </form>
+      <form id="name-form">
+        <p>Get Match by Codename!</p>
+        <input name="name" type="text" placeholder="Named Match" />
+        <button id="submit-btn">
+          Search!
+        </button>
+      </form>
+    </section>
+    <section id="match">
+      <h2 id="map" class="mirage"><p>Mirage</p></h2>
+      <h2 id="tournament">Tournament</h2>
+      <h2 id="date">Date</h2>
+    </section>
+    <main id="main">
+      <button id="search">Get a Match</button>
+      <section id="results" class="hidden">
+        <h1 id="team1" class="team">
+          Team 1
+        </h1>
+        <h1 id="team2" class="team">
+          Team 2
+        </h1>
+        <section id="stats">
+          <h1 id="mostkills" class="stat">
+            Most Kills: <span class="name">Player</span> -
+            <span class="score">Score</span>
+          </h1>
+          <h1 id="mostdamage" class="stat">
+            Most Damage: <span class="name">Player</span> -
+            <span class="score">Score</span>
+          </h1>
+          <h1 id="mostassists" class="stat">
+            Most Assists: <span class="name">Player</span> -
+            <span class="score">Score</span>
+          </h1>
+        </section>
+
+        <h1 id="mvp" class="stat">
+          MVP: <span class="name">Player</span> - Rated
+          <span class="score"></span>
+        </h1>
+      </section>
+    </main>
+    <section id="another" class="hidden"><button>Another!</button></section>
+    <aside id="cite">
+      Data Scraped from and Map Images from
+      <a href="https://www.hltv.org" alt="hltv.org" title="hltv.org"
+        >htlv.org</a
+      >
+      - Ryan Siu 2019
+    </aside>
+  </body>
+</html>
